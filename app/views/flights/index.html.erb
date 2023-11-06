@@ -1,0 +1,23 @@
+<h1>Flights</h1>
+
+<%= form_with url: flights_path, method: "get" do |form| %>
+  <%= form.select :departure_airport_id, Airport.all.map { |airport| [airport.code, airport.id] }, { include_blank: "Select a departure airport" } %>
+  <%= form.select :arrival_airport_id, Airport.all.map { |airport| [airport.code, airport.id] }, { include_blank: "Select an arrival airport" } %>
+  <%= form.number_field :passenger_count, min: 1, placeholder: "Number of passengers" %>
+  <%= form.date_select :start_datetime, discard_day: true, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @flights.any? %>
+  <h2>Search Results</h2>
+  <% @flights.each do |flight| %>
+    <p>Flight ID: <%= flight.id %></p>
+    <p>Start Datetime: <%= flight.start_datetime %></p>
+    <p>Flight Duration: <%= flight.flight_duration %></p>
+    <p>Passenger Count: <%= flight.passenger_count %></p>
+    <p>Departure Airport Code: <%= flight.departure_airport_code %></p>
+    <p>Arrival Airport Code: <%= flight.arrival_airport_code %></p>
+  <% end %>
+<% else %>
+  <p>Select at least one of our filters.</p>
+<% end %>
