@@ -14,6 +14,8 @@ class FlightsController < ApplicationController
       @flights = @flights.where('start_datetime >= ?', params[:start_datetime]) if params[:start_datetime].present?
 
       @flights = @flights.where('passenger_count >= ?', params[:passenger_count]) if params[:passenger_count].present?
+
+      session[:passenger_count] = params[:passenger_count]
     else
       @flights = []
     end

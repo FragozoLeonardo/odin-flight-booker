@@ -1,0 +1,21 @@
+<h1>Booking Details</h1>
+
+<p>Flight ID: <%= @flight.id %></p>
+<p>Start Datetime: <%= @flight.start_datetime %></p>
+<p>Flight Duration: <%= @flight.flight_duration %>h</p>
+<p>Departure Airport Code: <%= @flight.departure_airport_code %></p>
+<p>Arrival Airport Code: <%= @flight.arrival_airport_code %></p>
+
+<%= form_with model: @booking, url: bookings_path, local: true do |form| %>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+
+<%= form_with url: passengers_path, method: "get" do |form| %>
+  <p> Passenger Name:
+  <%= form.select :name, Passenger.all.map { |passenger| [passenger.name, passenger.id] }, { include_blank: "Name" } %>
+  <p> Passenger Email:
+  <%= form.select :email, Passenger.all.map { |passenger| [passenger.email, passenger.id] }, { include_blank: "Email" } %>
+
+<% end %>
+  <%= form.submit "Confirm Booking" %>
+<% end %>
+

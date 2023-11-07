@@ -12,3 +12,7 @@ Flight.create(departure_airport: Airport.find_by(code: 'CWB'), arrival_airport: 
               passenger_count: '50', start_datetime: DateTime.tomorrow, flight_duration: '6h')
 Flight.create(departure_airport: Airport.find_by(code: 'POA'), arrival_airport: Airport.find_by(code: 'CGH'),
               passenger_count: '100', start_datetime: DateTime.yesterday, flight_duration: '4h')
+
+Passenger.create(name: 'John Doe', email: 'john@example.com')
+Passenger.create(name: 'Jane Doe', email: 'jane@example.com')
+Passenger.create(name: 'Jim Doe', email: 'jim@example.com')
