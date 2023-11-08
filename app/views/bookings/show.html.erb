@@ -3,20 +3,17 @@
 <p>Flight ID: <%= @booking.flight.id %></p>
 <p>Start Datetime: <%= @booking.flight.start_datetime %></p>
 <p>Flight Duration: <%= @booking.flight.flight_duration %>h</p>
-<p>Departure Airport Code: <%= @booking.flight.departure_airport_code %></p>
-<p>Arrival Airport Code: <%= @booking.flight.arrival_airport_code %></p>
+<p>Departure Airport Code: <%= @booking.flight.departure_airport.code %></p>
+<p>Arrival Airport Code: <%= @booking.flight.arrival_airport.code %></p>
 
 <h2>Passengers</h2>
 
 <% if @booking.passengers.present? %>
-
-<p>Passenger Name:
-  <%= form. :passenger_id, options_for_select(Passenger.pluck(:name, :id), @booking.passenger_id), { include_blank: 'Name' } %>
-</p>
-
-<p>Passenger Email:
-  <%= form.select :passenger_id, options_for_select(Passenger.pluck(:email, :id), @booking.passenger_id), { include_blank: 'Email' } %>
-</p>
+    <% @booking.passengers.each do |passenger| %>
+  Passenger Name: <%= passenger.name %>
+  <br> <br>
+  Passenger Email: <%= passenger.email %>
+<% end %>
 
 <% else %>
   <p>No passengers selected</p>

@@ -9,14 +9,19 @@
 <%= form_with model: @booking, url: bookings_path, local: true do |form| %>
   <%= form.hidden_field :flight_id, value: @flight.id %>
 
-  <p>Passenger Name:
-    <%= form.select :passenger_id, options_for_select(Passenger.pluck(:name, :id), @booking.passenger_id), { include_blank: 'Name' } %>
-  </p>
+<%= form_with model: @booking, url: bookings_path, local: true do |form| %>
+ <%= form.hidden_field :flight_id, value: @flight.id %>
 
-  <p>Passenger Email:
-    <%= form.select :passenger_id, options_for_select(Passenger.pluck(:email, :id), @booking.passenger_id), { include_blank: 'Email' } %>
-  </p>
+ <p>Passenger:
+<%= form.select :passenger_id, options_for_select(@passengers.map { |p| [p.name, p.id] }, @booking.passenger_id), { include_blank: 'Passenger' } %>
+</p>
 
-  <%= form.submit "Confirm Booking" %>
+ <p>Emailr:
+<%= form.select :passenger_id, options_for_select(@passengers.map { |p| [p.email, p.id] }, @booking.passenger_id), { include_blank: 'Email' } %>
+</p>
+
+
+ <%= form.submit "Confirm Booking" %>
 <% end %>
 
+<% end %>

@@ -16,16 +16,12 @@ flight3 = Flight.create(departure_airport: Airport.find_by(code: 'POA'), arrival
                         passenger_count: 100, start_datetime: DateTime.yesterday, flight_duration: '4h')
 
 # Create passengers
-passenger1 = Passenger.create(name: 'John Doe', email: 'john@example.com')
-passenger2 = Passenger.create(name: 'Jane Doe', email: 'jane@example.com')
-passenger3 = Passenger.create(name: 'Jim Doe', email: 'jim@example.com')
+Passenger.create(name: 'John Doe', email: 'john@example.com')
+Passenger.create(name: 'Jane Doe', email: 'jane@example.com')
+Passenger.create(name: 'Jim Doe', email: 'jim@example.com')
 
 # Create bookings and associate passengers with flights
-booking1 = Booking.create(flight: flight1)
-passenger1.update(booking: booking1)
 
-booking2 = Booking.create(flight: flight2)
-passenger2.update(booking: booking2)
-
-booking3 = Booking.create(flight: flight3)
-passenger3.update(booking: booking3)
+Booking.create(flight: flight1, passengers_attributes: [{ name: 'John Doe', email: 'john@example.com' }])
+Booking.create(flight: flight2, passengers_attributes: [{ name: 'Jane Doe', email: 'jane@example.com' }])
+Booking.create(flight: flight3, passengers_attributes: [{ name: 'Jim Doe', email: 'jim@example.com' }])
