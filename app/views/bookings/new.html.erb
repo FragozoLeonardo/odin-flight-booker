@@ -10,14 +10,13 @@
   <%= form.hidden_field :flight_id, value: @flight.id %>
 
   <p>Passenger Name:
-    <%= form.select :name, options_for_select(Passenger.pluck(:name, :name), @booking.name), { include_blank: 'Name' } %>
+    <%= form.select :passenger_id, options_for_select(Passenger.pluck(:name, :id), @booking.passenger_id), { include_blank: 'Name' } %>
   </p>
 
   <p>Passenger Email:
-    <%= form.select :email, options_for_select(Passenger.pluck(:email, :email), @booking.email), { include_blank: 'Email' } %>
+    <%= form.select :passenger_id, options_for_select(Passenger.pluck(:email, :id), @booking.passenger_id), { include_blank: 'Email' } %>
   </p>
 
   <%= form.submit "Confirm Booking" %>
-
 <% end %>
 

@@ -8,7 +8,16 @@
 
 <h2>Passengers</h2>
 
-<% @booking.passengers.each do |passenger| %>
- <p>Name: <%= passenger.name %></p>
- <p>Email: <%= passenger.email %></p>
+<% if @booking.passengers.present? %>
+
+<p>Passenger Name:
+  <%= form. :passenger_id, options_for_select(Passenger.pluck(:name, :id), @booking.passenger_id), { include_blank: 'Name' } %>
+</p>
+
+<p>Passenger Email:
+  <%= form.select :passenger_id, options_for_select(Passenger.pluck(:email, :id), @booking.passenger_id), { include_blank: 'Email' } %>
+</p>
+
+<% else %>
+  <p>No passengers selected</p>
 <% end %>

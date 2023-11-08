@@ -16,7 +16,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    Rails.logger.info(params.inspect)
     @booking = Booking.new(booking_params)
 
     if @booking.save
@@ -27,11 +26,17 @@ class BookingsController < ApplicationController
     end
   end
 
+
+  def show
+
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, :passenger_count, passengers_attributes: %i[flight_id name email])
+    params.require(:booking).permit(:flight_id, :passenger_id, passengers_attributes: %i[id name email])
   end
+
 
   def load_flight
     if params[:flight_id].present? && (flight = Flight.find_by(id: params[:flight_id]))
