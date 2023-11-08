@@ -23,10 +23,8 @@ class BookingsController < ApplicationController
     if params[:booking][:flight_id].present? && params[:booking][:passenger_id].present?
       if @booking.save && @passenger
         @booking.passengers << @passenger
-        Rails.logger.debug "Booking saved with id: #{@booking.id}"
         redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
       else
-        Rails.logger.debug "Error saving booking: #{@booking.errors.full_messages.join(', ')}"
         flash.now[:alert] = 'There was an error while saving the booking.'
         render :new
       end
